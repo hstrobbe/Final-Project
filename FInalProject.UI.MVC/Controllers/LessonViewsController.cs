@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FInalProject.DATA.EF;
+using Microsoft.AspNet.Identity;
 
 namespace FInalProject.UI.MVC.Controllers
 {
@@ -17,13 +18,31 @@ namespace FInalProject.UI.MVC.Controllers
         // GET: LessonViews
         public ActionResult Index()
         {
-            var lessonViews = db.LessonViews.Include(l => l.Lesson).Include(l => l.UserDetail);
-            return View(lessonViews.ToList());
+            //string currentUser = User.Identity.GetUserId(
+            //var lessonViews = db.LessonViews.Include(l => l.Lesson).Include(l => l.UserDetail);
+            
+         
+
+            if(User.IsInRole("Admin") || User.IsInRole("Manager"))
+            {
+                var lessonViews = db.LessonViews.Include(l => l.Lesson).Include(l => l.UserDetail);
+                return View(lessonViews.ToList());
+            }
+            
+            else
+            {
+                string currentUser = User.Identity.GetUserId();
+
+                var lessonViews = db.LessonViews.Where(cu => cu.UserId == currentUser);
+                return View(lessonViews.ToList());
+            }
+            
         }
 
         // GET: LessonViews/Details/5
         public ActionResult Details(int? id)
         {
+           
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

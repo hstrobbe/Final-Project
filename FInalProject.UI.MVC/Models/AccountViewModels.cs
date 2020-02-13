@@ -65,6 +65,11 @@ namespace FinalProject.UI.MVC.Models
     public class RegisterViewModel
     {
         [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        // Code Omitted for Brevity
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -109,4 +114,8 @@ namespace FinalProject.UI.MVC.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+  
+
+
 }

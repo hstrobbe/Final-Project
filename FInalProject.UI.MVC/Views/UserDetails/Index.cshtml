@@ -1,39 +1,77 @@
 ﻿@model IEnumerable<FInalProject.DATA.EF.UserDetail>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "User Details";
 }
 
-<h2>Index</h2>
+<section>
+    <h2 style="padding-top:3em; color: #0ab099">@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
-        </td>
-    </tr>
+    <div class="container-fluid" style="padding-top:10em; border-radius:5px; border: solid #0ab099; color:#0ab099">
+        <table class="table display" style="padding-top:2em; color:#0ab099">
+            <thead>
+                <tr style="color:#0ab099">
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </th>
+                    
+                        <th></th>
+                    
+                    
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+
+                        <td>
+                           @Html.ActionLink("Details", "Details", new { id = item.UserId })
+
+                            @if (User.IsInRole("Admin"))
+                            {
+
+                               @:| @Html.ActionLink("Edit", "Edit", new { id = item.UserId })
+
+
+                               @ @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+
+                            }
+                            
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <div class="btn btn-primary">
+        @if (User.IsInRole("Admin"))
+        {
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        }
+    </div>
+</section>
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
 }
 
-</table>

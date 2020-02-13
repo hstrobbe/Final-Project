@@ -1,45 +1,74 @@
 ﻿@model IEnumerable<FInalProject.DATA.EF.LessonView>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lessons Viewed";
 }
 
-<h2>Index</h2>
+<section>
+    <h2 style="padding-top:3em;">@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DateViewed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateViewed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LessonViewId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LessonViewId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LessonViewId })
-        </td>
-    </tr>
+    <div class="container" style="padding-top:3em; ">
+        <table class="table display" style="padding-top:2em;">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateViewed)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                    </th>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th></th>
+                    }
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateViewed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
+                        </td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewId })
+
+                                @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewId })
+
+                            </td>
+                        }
+                        <td> @Html.ActionLink("Details", "Details", new { id = item.LessonViewId }) </td>
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+</section>
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
 }
-
-</table>

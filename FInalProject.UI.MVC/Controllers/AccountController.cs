@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using FInalProject.DATA.EF;
 namespace FinalProject.UI.MVC.Controllers
 {
     [Authorize]
@@ -153,11 +153,17 @@ namespace FinalProject.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    #region Dealing with custom user details
+                    UserDetail newUserDeets = new UserDetail();
+                    newUserDeets.UserId = user.Id;
+                    newUserDeets.FirstName = model.FirstName;
+                    newUserDeets.LastName = model.LastName;
+
+                    //--TODO: handle file upload
+                    FinalProjectEntities db = new FinalProjectEntities();db.UserDetails.Add(newUserDeets);db.SaveChanges();
+                    #endregion
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    return RedirectToAction("Login");
                 }
                 AddErrors(result);
             }

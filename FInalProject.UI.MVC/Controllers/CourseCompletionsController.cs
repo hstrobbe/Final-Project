@@ -37,6 +37,7 @@ namespace FInalProject.UI.MVC.Controllers
         }
 
         // GET: CourseCompletions/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FInalProject.DATA.EF;
+using Microsoft.AspNet.Identity;
 
 namespace FInalProject.UI.MVC.Controllers
 {
@@ -22,8 +23,9 @@ namespace FInalProject.UI.MVC.Controllers
         }
 
         // GET: Lessons/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -33,7 +35,37 @@ namespace FInalProject.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
+            #region Youtube
+            var v = lesson.VideoURL.IndexOf("v=");
+            var amp = lesson.VideoURL.IndexOf("&", v);
+            string vid;
+            // if the video id is the last value in the url
+            if (amp == -1)
+            {
+                vid = lesson.VideoURL.Substring(v + 2);
+                // if there are other parameters after the video id in the url
+            }
+            else
+            {
+                vid = lesson.VideoURL.Substring(v + 2, amp - (v + 2));
+            }
+            ViewBag.VideoID = vid;
+            #endregion
+            
+            #region Lesson view
+            string userid = User.Identity.GetUserId();
+            UserDetail ud = db.UserDetails.Find(userid);
+            LessonView lessonView = new LessonView();
+            lessonView.LessonId = id;
+            lessonView.UserId = userid;
+            lessonView.DateViewed = DateTime.Now;
+            db.LessonViews.Add(lessonView);
+            db.SaveChanges();
             return View(lesson);
+            //var lessonView = db.LessonViews.Include(c => c.DateViewed).Include(c => c.LessonId);
+            //return View(lessonView.ToList());
+            #endregion
+
         }
 
         // GET: Lessons/Create

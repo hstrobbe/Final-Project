@@ -36,6 +36,7 @@ namespace FInalProject.UI.MVC.Controllers
         }
 
         // GET: Courses/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -45,6 +46,7 @@ namespace FInalProject.UI.MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CourseId,CourseName,CourseDescription,IsActive")] Course course)
         {
@@ -59,6 +61,7 @@ namespace FInalProject.UI.MVC.Controllers
         }
 
         // GET: Courses/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +81,7 @@ namespace FInalProject.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "CourseId,CourseName,CourseDescription,IsActive")] Course course)
         {
             if (ModelState.IsValid)
@@ -90,6 +94,7 @@ namespace FInalProject.UI.MVC.Controllers
         }
 
         // GET: Courses/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +110,7 @@ namespace FInalProject.UI.MVC.Controllers
         }
 
         // POST: Courses/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

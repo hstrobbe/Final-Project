@@ -1,0 +1,15 @@
+﻿#navbar {
+    color: #c7a87e;
+}
+#artroom {
+   
+    background-image: url('../images/artroom.jpg');
+}
+
+ section {
+    background-image: url('../../Content/images/basic3.jpg');
+    background-size: cover;
+}
+#home {
+    background-color:black;
+}

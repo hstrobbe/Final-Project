@@ -31,7 +31,53 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.VideoURL)
+            @*@Html.DisplayFor(model => model.VideoURL)*@
+            <div id="player">
+                <script src="http://www.youtube.com/player_api"></script>
+
+                <script>
+                    // create youtube player
+                        var player;
+                        var h = '@ViewBag.height';
+                        var w = '@ViewBag.width';
+                        function onYouTubePlayerAPIReady() {
+                        player = new YT.Player('player', {
+                        height: 360,
+                        width: 640,
+                        modestbranding: 1,
+                        videoId: '@ViewBag.VideoID',
+                        playerVars: {
+                        rel: 0,
+                        autoplay: 0,
+                        disablekb: 0,
+                        showsearch: 0,
+                        showinfo: 0,
+                        controls: 1,
+                        fs: 1,
+                        hd: 1,
+                        html5: 1,
+                        iv_load_policy: 3
+                        },
+                        events: {
+                        onReady: onPlayerReady,
+                        onStateChange: onPlayerStateChange
+                        }
+                        });
+                        }
+                        // autoplay video
+                        function onPlayerReady(event) {
+                        event.target.playVideo();
+                        }
+
+                        // when video ends
+                        function onPlayerStateChange(event) {
+                        if(event.data === 0) {
+                        //do something on end;
+                        alert('done');
+                        }
+                        }
+                </script>
+            </div>
         </dd>
 
         <dt>
@@ -60,7 +106,13 @@
 
     </dl>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LessonId }) |
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.LessonId })
+    }
+
     @Html.ActionLink("Back to List", "Index")
 </p>
+

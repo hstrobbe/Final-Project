@@ -201,6 +201,7 @@
     <Content Include="Content\css\bootstrap\bootstrap-reboot.css" />
     <Content Include="Content\css\css\bootstrap-reboot.css" />
     <Content Include="Content\css\css\mixins\_text-hide.css" />
+    <Content Include="Content\css\Custom.css" />
     <Content Include="Content\css\flaticon.css" />
     <Content Include="Content\css\icomoon.css" />
     <Content Include="Content\css\ionicons.min.css" />
@@ -218,8 +219,13 @@
     <Content Include="Content\fonts\ionicons\css\ionicons.min.css" />
     <Content Include="Content\fonts\ionicons\fonts\ionicons.svg" />
     <Content Include="Content\fonts\open-iconic\open-iconic.svg" />
+    <Content Include="Content\images\3ef13af2-36ac-4b52-97ce-f51ea4596cd1.png" />
     <Content Include="Content\images\about-1.jpg" />
     <Content Include="Content\images\about.jpg" />
+    <Content Include="Content\images\artroom.jpg" />
+    <Content Include="Content\images\basic1.jpg" />
+    <Content Include="Content\images\basic2.jpg" />
+    <Content Include="Content\images\basic3.jpg" />
     <Content Include="Content\images\bg_1.jpg" />
     <Content Include="Content\images\bg_2.jpg" />
     <Content Include="Content\images\bg_3.jpg" />
@@ -250,6 +256,7 @@
     <Content Include="Content\images\dinner-4.jpg" />
     <Content Include="Content\images\dinner-5.jpg" />
     <Content Include="Content\images\dinner-6.jpg" />
+    <Content Include="Content\images\drawing.jpg" />
     <Content Include="Content\images\drink-1.jpg" />
     <Content Include="Content\images\drink-2.jpg" />
     <Content Include="Content\images\drink-3.jpg" />
@@ -281,10 +288,12 @@
     <Content Include="Content\images\menu-1.jpg" />
     <Content Include="Content\images\menu-2.jpg" />
     <Content Include="Content\images\menu-3.jpg" />
+    <Content Include="Content\images\painting.jpg" />
     <Content Include="Content\images\person_1.jpg" />
     <Content Include="Content\images\person_2.jpg" />
     <Content Include="Content\images\person_3.jpg" />
     <Content Include="Content\images\person_4.jpg" />
+    <Content Include="Content\images\sewing.jpg" />
     <Content Include="Content\images\wine-1.jpg" />
     <Content Include="Content\images\wine-2.jpg" />
     <Content Include="Content\images\wine-3.jpg" />
@@ -1024,7 +1033,6 @@
     <Content Include="Views\UserDetails\Details.cshtml" />
     <Content Include="Views\UserDetails\Edit.cshtml" />
     <Content Include="Views\UserDetails\Index.cshtml" />
-    <Content Include="Views\Home\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,45 +1,70 @@
 ﻿@model IEnumerable<FInalProject.DATA.EF.CourseCompletion>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Courses Completed";
 }
 
-<h2>Index</h2>
+<section >
+    <h2 style="padding-top:3em;">@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCompleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Course.CourseName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCompleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CourseCompletionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CourseCompletionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CourseCompletionId })
-        </td>
-    </tr>
+    <div class="container" style="padding-top:3em; ">
+        <table class="table display" style="padding-top:2em;">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateCompleted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Course.CourseName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCompleted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Course.CourseName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
+                        </td>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.CourseCompletionId })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.CourseCompletionId })
+                            </td>
+                        }
+
+                        <td>@Html.ActionLink("Details", "Details", new { id = item.CourseCompletionId }) |</td>
+
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+</section>
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
 }
-
-</table>
