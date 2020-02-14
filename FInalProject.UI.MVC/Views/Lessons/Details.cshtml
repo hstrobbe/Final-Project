@@ -82,10 +82,13 @@
 
         <dt>
             @Html.DisplayNameFor(model => model.PdfFileName)
+            
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PdfFileName)
+            @*@Html.DisplayFor(model => model.PdfFileName)*@
+            <a href="@Url.Content("~/Content/images" + Model.PdfFileName)" target="_blank">Click to see PDF</a>
+            @*<iframe id="iframe" href="@Url.Content("~/Content/" + Model.PdfFileName)" alt="@Model.PdfFileName"></iframe>*@
         </dd>
 
         <dt>

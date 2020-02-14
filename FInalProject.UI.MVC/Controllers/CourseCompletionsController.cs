@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FInalProject.DATA.EF;
+using Microsoft.AspNet.Identity;
 
 namespace FInalProject.UI.MVC.Controllers
 {
@@ -22,7 +23,7 @@ namespace FInalProject.UI.MVC.Controllers
         }
 
         // GET: CourseCompletions/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
@@ -33,6 +34,8 @@ namespace FInalProject.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
+
+
             return View(courseCompletion);
         }
 

@@ -4,10 +4,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using FInalProject.DATA.EF;
 using Microsoft.AspNet.Identity;
+using FInalProject.UI.MVC.Models;
 
 namespace FInalProject.UI.MVC.Controllers
 {
@@ -23,7 +25,7 @@ namespace FInalProject.UI.MVC.Controllers
         }
 
         // GET: Lessons/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, CourseCompletionEmailViewModel ccevm)
         {
 
             if (id == null)
@@ -36,22 +38,32 @@ namespace FInalProject.UI.MVC.Controllers
                 return HttpNotFound();
             }
             #region Youtube
-            var v = lesson.VideoURL.IndexOf("v=");
-            var amp = lesson.VideoURL.IndexOf("&", v);
-            string vid;
-            // if the video id is the last value in the url
-            if (amp == -1)
+
+
+            if (lesson.VideoURL != null)
             {
-                vid = lesson.VideoURL.Substring(v + 2);
-                // if there are other parameters after the video id in the url
+                var v = lesson.VideoURL.IndexOf("v=");
+                var amp = lesson.VideoURL.IndexOf("&", v);
+                string vid;
+                // if the video id is the last value in the url
+                if (amp == -1)
+                {
+                    vid = lesson.VideoURL.Substring(v + 2);
+                    // if there are other parameters after the video id in the url
+                }
+                else
+                {
+                    vid = lesson.VideoURL.Substring(v + 2, amp - (v + 2));
+                }
+                ViewBag.VideoID = vid;
             }
-            else
-            {
-                vid = lesson.VideoURL.Substring(v + 2, amp - (v + 2));
-            }
-            ViewBag.VideoID = vid;
+
+
+
+
+
             #endregion
-            
+
             #region Lesson view
             string userid = User.Identity.GetUserId();
             UserDetail ud = db.UserDetails.Find(userid);
@@ -61,11 +73,31 @@ namespace FInalProject.UI.MVC.Controllers
             lessonView.DateViewed = DateTime.Now;
             db.LessonViews.Add(lessonView);
             db.SaveChanges();
-            return View(lesson);
+            
             //var lessonView = db.LessonViews.Include(c => c.DateViewed).Include(c => c.LessonId);
             //return View(lessonView.ToList());
             #endregion
 
+            #region Coursecompletion and email
+            int nbrLs = db.Lessons.Where(x => x.CourseId == lesson.CourseId).Count();
+            int nbrLvs = db.LessonViews.Where(x => x.UserId == userid && x.Lesson.CourseId == lesson.CourseId).Count();
+            if (nbrLs == nbrLvs)
+            {
+                
+              
+                CourseCompletion courseCompletion = new CourseCompletion();
+                courseCompletion.CourseId = lesson.CourseId;
+                courseCompletion.UserId = userid;
+                courseCompletion.DateCompleted = DateTime.Now;
+                db.CourseCompletions.Add(courseCompletion);
+                db.SaveChanges();
+
+               
+            }
+
+            #endregion
+
+            return View(lesson);
         }
 
         // GET: Lessons/Create
@@ -80,10 +112,27 @@ namespace FInalProject.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LessonId,LessonTitle,CourseId,Introduction,VideoURL,PdfFileName,IsActive")] Lesson lesson)
+        public ActionResult Create([Bind(Include = "LessonId,LessonTitle,CourseId,Introduction,VideoURL,PdfFileName,IsActive")] Lesson lesson, HttpPostedFileBase coverImage)
         {
             if (ModelState.IsValid)
             {
+                string pdfName = "No Document Provided.pdf";
+                if (coverImage != null)
+                {
+                    pdfName = coverImage.FileName;
+                    string ext = pdfName.Substring(pdfName.LastIndexOf('.'));
+                    string[] goodExts = { ".pdf" };
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        coverImage.SaveAs(Server.MapPath("~/Content/" + pdfName));
+                    }
+                    else
+                    {
+                        pdfName = "No Document Provided.pdf";
+                    }
+                }
+                lesson.PdfFileName = pdfName;
+
                 db.Lessons.Add(lesson);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -114,10 +163,24 @@ namespace FInalProject.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LessonId,LessonTitle,CourseId,Introduction,VideoURL,PdfFileName,IsActive")] Lesson lesson)
+        public ActionResult Edit([Bind(Include = "LessonId,LessonTitle,CourseId,Introduction,VideoURL,PdfFileName,IsActive")] Lesson lesson, HttpPostedFileBase coverImage)
         {
             if (ModelState.IsValid)
             {
+                string pdfName = "No Document Provided.pdf";
+                if (coverImage != null)
+                {
+                    pdfName = coverImage.FileName;
+                    string ext = pdfName.Substring(pdfName.LastIndexOf('.'));
+                    string[] goodExts = { ".pdf" };
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        coverImage.SaveAs(Server.MapPath("~/Content/" + pdfName));
+                    }
+                    lesson.PdfFileName = pdfName;
+                }
+
+
                 db.Entry(lesson).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
