@@ -4,35 +4,38 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<section>
+    <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
 
-<div>
-    <h4>UserDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+    <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+        <dl class="d-lg-table">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <br />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <br />
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <br />
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+        </dl>
 
-    </dl>
-    @if (User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) 
-}
-</div>
-<p>
-    
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    </div>
+    <br />
+    <p>
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) @:|
+        }
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</section>

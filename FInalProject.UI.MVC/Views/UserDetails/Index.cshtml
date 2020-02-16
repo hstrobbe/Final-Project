@@ -4,24 +4,25 @@
     ViewBag.Title = "User Details";
 }
 
+
 <section>
-    <h2 style="padding-top:3em; color: #0ab099">@ViewBag.Title</h2>
+    <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
 
 
-    <div class="container-fluid" style="padding-top:10em; border-radius:5px; border: solid #0ab099; color:#0ab099">
-        <table class="table display" style="padding-top:2em; color:#0ab099">
+    <div class="container-fluid">
+        <table class="table display">
             <thead>
-                <tr style="color:#0ab099">
+                <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.FirstName)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.LastName)
                     </th>
-                    
-                        <th></th>
-                    
-                    
+
+                    <th></th>
+
+
                 </tr>
             </thead>
 
@@ -37,18 +38,21 @@
                         </td>
 
                         <td>
-                           @Html.ActionLink("Details", "Details", new { id = item.UserId })
+                            @Html.ActionLink("Details", "Details", new { id = item.UserId })
 
                             @if (User.IsInRole("Admin"))
                             {
 
-                               @:| @Html.ActionLink("Edit", "Edit", new { id = item.UserId })
+                                @:| @Html.ActionLink("Edit", "Edit", new { id = item.UserId })
 
 
-                               @:| @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+
+
+                                @:| @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+
 
                             }
-                            
+
                         </td>
 
                     </tr>
@@ -57,7 +61,7 @@
 
         </table>
     </div>
-    <div class="btn btn-primary">
+    <div class="btn btn-black">
         @if (User.IsInRole("Admin"))
         {
             <p>

@@ -183,7 +183,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
-    <Compile Include="Models\CourseCompletionEmailViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -224,9 +223,13 @@
     <Content Include="Content\images\3ef13af2-36ac-4b52-97ce-f51ea4596cd1.png" />
     <Content Include="Content\images\artroom.jpg" />
     <Content Include="Content\images\basic3.jpg" />
+    <Content Include="Content\images\color1.jpg" />
+    <Content Include="Content\images\color1_edited.jpg" />
+    <Content Include="Content\images\color2.jpg" />
     <Content Include="Content\images\drawing.jpg" />
     <Content Include="Content\images\loc.png" />
     <Content Include="Content\images\painting.jpg" />
+    <Content Include="Content\images\sewing.jpg" />
     <Content Include="Content\js\aos.js" />
     <Content Include="Content\js\bootstrap-datepicker.js" />
     <Content Include="Content\js\bootstrap.min.js" />

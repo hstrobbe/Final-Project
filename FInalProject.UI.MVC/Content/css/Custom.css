@@ -1,15 +1,61 @@
 ﻿#navbar {
     color: #c7a87e;
+    background-color:black;
 }
 #artroom {
    
     background-image: url('../images/artroom.jpg');
+    
 }
 
- section {
-    background-image: url('../../Content/images/basic3.jpg');
-    background-size: cover;
-}
+
+
 #home {
     background-color:black;
 }
+#contact {
+    background: url('../../Content/images/color1_edited.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 5em;
+    
+ 
+
+}
+#contactTitle {
+    font-weight: bolder;
+    font-family: 'Indie Flower';
+    color: white;
+   
+}
+    
+#contactbody {
+    font-weight: bolder;
+    
+    font-family: 'Indie Flower';
+    font-size:larger;
+    padding-bottom:5em;
+}
+slider-item js-fullheight {
+    background-size: cover;
+}
+section {
+    background-image: url("../images/color1_edited.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color:black;
+}
+div.container-fluid{
+    background-color:white;
+}
+
+dl.d-lg-table {
+    color: white;
+    background-color: rgba(0,0,0,0.7);
+}
+/*#ftco-loader.fullscreen{
+    width:90%;
+}*/

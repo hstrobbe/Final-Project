@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using FInalProject.DATA.EF;
 using Microsoft.AspNet.Identity;
-using FInalProject.UI.MVC.Models;
+using FInalProject.UI.MVC;
 
 namespace FInalProject.UI.MVC.Controllers
 {
@@ -25,7 +25,7 @@ namespace FInalProject.UI.MVC.Controllers
         }
 
         // GET: Lessons/Details/5
-        public ActionResult Details(int id, CourseCompletionEmailViewModel ccevm)
+        public ActionResult Details(int id)
         {
 
             if (id == null)
@@ -73,7 +73,7 @@ namespace FInalProject.UI.MVC.Controllers
             lessonView.DateViewed = DateTime.Now;
             db.LessonViews.Add(lessonView);
             db.SaveChanges();
-            
+
             //var lessonView = db.LessonViews.Include(c => c.DateViewed).Include(c => c.LessonId);
             //return View(lessonView.ToList());
             #endregion
@@ -83,8 +83,8 @@ namespace FInalProject.UI.MVC.Controllers
             int nbrLvs = db.LessonViews.Where(x => x.UserId == userid && x.Lesson.CourseId == lesson.CourseId).Count();
             if (nbrLs == nbrLvs)
             {
-                
-              
+
+
                 CourseCompletion courseCompletion = new CourseCompletion();
                 courseCompletion.CourseId = lesson.CourseId;
                 courseCompletion.UserId = userid;
@@ -92,7 +92,31 @@ namespace FInalProject.UI.MVC.Controllers
                 db.CourseCompletions.Add(courseCompletion);
                 db.SaveChanges();
 
-               
+                string body = string.Format($"User: {courseCompletion.UserId})<br/>" +
+                    $"Email: {courseCompletion.UserId}</br> Subject: Course Completion<br/>" +
+                    $"Message:<br/> {courseCompletion.UserId} completed Course {courseCompletion.CourseId} on {courseCompletion.DateCompleted}.");
+
+                MailMessage msg = new MailMessage("admin@hannahstrobbe.com", "hannahstrobbe@outlook.com", "Course Completion", body);
+                msg.IsBodyHtml = true;
+                msg.Priority = MailPriority.High;
+
+                SmtpClient client = new SmtpClient("mail.hannahstrobbe.com");
+                client.Credentials = new NetworkCredential("admin@hannahstrobbe.com", "GSTWm245.");
+
+                using (client)
+                {
+                    try
+                    {
+                        client.Send(msg);
+                    }
+                    catch (Exception)
+                    {
+
+                        ViewBag.ErrorMessage = "The email did not send properly. Try again.";
+                    }
+
+                }
+
             }
 
             #endregion
@@ -175,7 +199,7 @@ namespace FInalProject.UI.MVC.Controllers
                     string[] goodExts = { ".pdf" };
                     if (goodExts.Contains(ext.ToLower()))
                     {
-                        coverImage.SaveAs(Server.MapPath("~/Content/" + pdfName));
+                        coverImage.SaveAs(Server.MapPath("~/Content/PDF" + pdfName));
                     }
                     lesson.PdfFileName = pdfName;
                 }
