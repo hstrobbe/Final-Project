@@ -4,69 +4,73 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Lesson</h4>
+<section>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LessonTitle)
-        </dt>
+    <h2 style="padding-top:3em;">@ViewBag.Title</h2>
+    <hr />
+    <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LessonTitle)
-        </dd>
+        <dl class="d-lg-table">
+            <dt>
+                @Html.DisplayNameFor(model => model.LessonTitle)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Introduction)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LessonTitle)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Introduction)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Introduction)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoURL)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Introduction)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VideoURL)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.VideoURL)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PdfFileName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VideoURL)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PdfFileName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PdfFileName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PdfFileName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Course.CourseName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IsActive)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course.CourseName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.CourseName)
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Course.CourseName)
+            </dd>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        </dl>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input style="color:#e5b929" type="submit" value="Delete" class="btn btn-black" /> |
+                <div class="btn btn-black"> @Html.ActionLink("Back to List", "Index")</div>
+            </div>
+        }
+        <br />
+        <br />
+    </div>
+    </section>

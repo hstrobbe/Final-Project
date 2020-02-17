@@ -5,7 +5,9 @@
 }
 
 <section>
+    <hr />
     <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
+    <hr />
 
     <div>
 
@@ -31,11 +33,13 @@
 
     </div>
     <br />
-    <p>
+    <p class="btn btn-black">
         @if (User.IsInRole("Admin"))
         {
             @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) @:|
         }
         @Html.ActionLink("Back to List", "Index")
     </p>
+    <br />
+    <br />
 </section>

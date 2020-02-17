@@ -4,37 +4,44 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create.</h2>
+<<section>
+    <br />
+    <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Role.</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+        <div class="form-horizontal" style="color:white">
+            <br />
+            <br />
+            @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Name)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input style="color:#e5b929" type="submit" value="Create" class="btn btn-black" />
+                    <div class="btn btn-black">
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                </div>
             </div>
         </div>
+        <br />
+        <br />
+    }
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

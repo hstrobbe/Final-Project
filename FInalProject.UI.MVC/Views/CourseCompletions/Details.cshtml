@@ -4,42 +4,48 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<section>
+    <br />
+    <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
+    <br />
 
-<div>
-    <h4>CourseCompletion</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCompleted)
-        </dt>
+    <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateCompleted)
-        </dd>
+        <dl class="d-lg-table">
+            <dt>
+                @Html.DisplayNameFor(model => model.DateCompleted)<br />
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Course.CourseName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateCompleted)<br />
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course.CourseName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.CourseName)<br />
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Course.CourseName)<br />
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserDetail.FirstName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UserDetail.FirstName)<br />
+            </dt>
 
-    </dl>
-</div>
-<p>
-    @if (User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.CourseId }) @: |
-    }
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dd>
+                @Html.DisplayFor(model => model.UserDetail.FirstName)<br />
+            </dd>
+
+        </dl>
+    </div>
+    <br />
+    <p class="btn btn-black">
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.CourseCompletionId }) @: |
+        }
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    <br/>
+    <br/>
+</section>

@@ -5,11 +5,11 @@
 }
 
 <section>
-    <h2 style="padding-top:3em;">@ViewBag.Title</h2>
+    <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
 
 
-    <div class="container" style="padding-top:3em; ">
-        <table class="table display" style="padding-top:2em;">
+    <div class="container-fluid" style="padding-left:5em">
+        <table class="table display">
             <thead>
                 <tr>
                     <th>
@@ -42,16 +42,19 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
                         </td>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewId })
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.LessonViewId })
 
-                                @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewId })
+                            @if (User.IsInRole("Admin"))
+                            {
 
-                            </td>
-                        }
-                        <td> @Html.ActionLink("Details", "Details", new { id = item.LessonViewId }) </td>
+                               @:| @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewId })
+
+                               @:| @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewId })
+
+
+                            }
+                        </td>
 
                     </tr>
                 }
@@ -59,10 +62,17 @@
 
         </table>
     </div>
-    @if (User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Create New", "Create")
-    }
+    <br />
+    <div class="btn btn-black">
+        @if (User.IsInRole("Admin"))
+        {
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        }
+    </div>
+    <br />
+    <br />
 </section>
 @section scripts{
 

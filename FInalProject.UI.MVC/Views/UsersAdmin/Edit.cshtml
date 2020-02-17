@@ -4,48 +4,55 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit.</h2>
+<section>
+    <br />
+    <br />
+    <h2 style="padding-top:3em;">@ViewBag.Title</h2>
 
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Edit User Form.</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
+        <div class="form-horizontal" style="color:white">
+            <hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-               @Html.ValidationMessageFor(model => model.Email)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+            <div class="col-md-5" style="background-color:rgba(0,0,0,0.7); ">
+                @Html.Label("Roles", new { @class = "control-label col-md-2" })
+                <span class=" col-md-4">
+                    @foreach (var item in Model.RolesList)
+                    {
+                        <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                        @Html.Label(item.Value, new { @class = "control-label" })
+                    }
+                </span>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input style="color:#e5b929" type="submit" value="Save" class="btn btn-black" />
+
+                    <div class="btn btn-black"> @Html.ActionLink("Back to List", "Index")</div>
+
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            @Html.Label("Roles", new { @class = "control-label col-md-2" })
-            <span class=" col-md-10">
-                @foreach (var item in Model.RolesList)
-                {
-                    <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
-                    @Html.Label(item.Value, new { @class = "control-label" })
-                }
-            </span>
-        </div>
+        <br />
+        <br />
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+    }
+    </section>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

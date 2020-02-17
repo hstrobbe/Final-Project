@@ -5,11 +5,11 @@
 }
 
 <section>
-    <h2 style="padding-top:3em;">@ViewBag.Title</h2>
+    <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
 
 
-    <div class="container" style="padding-top:3em; ">
-        <table class="table display" style="padding-top:2em;">
+    <div class="container-fluid">
+        <table class="table display">
             <thead>
                 <tr>
                     <th>
@@ -39,10 +39,13 @@
 
         </table>
     </div>
-
-    <p>
+    <br/>
+    <p class="btn btn-black">
         @Html.ActionLink("Create New", "Create")
     </p>
+<br/>
+    <br/>
+
 </section>
 
 @section scripts{

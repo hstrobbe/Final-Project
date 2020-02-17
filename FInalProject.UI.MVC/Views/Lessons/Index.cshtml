@@ -4,12 +4,12 @@
     ViewBag.Title = "Lessons";
 }
 
-<section>
-    <h2 style="padding-top:3em;">@ViewBag.Title</h2>
+<<section>
+    <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
 
 
-    <div class="container" style="padding-top:3em; ">
-        <table class="table display" style="padding-top:2em;">
+    <div class="container-fluid">
+        <table class="table display" >
             <thead>
                 <tr>
                     <th>
@@ -18,15 +18,6 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Introduction)
                     </th>
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.VideoURL)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.PdfFileName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IsActive)
-                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.Course.CourseName)
                     </th>
@@ -49,30 +40,22 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Introduction)
                         </td>
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.VideoURL)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PdfFileName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IsActive)
-                            </td>*@
+
                         <td>
                             @Html.DisplayFor(modelItem => item.Course.CourseName)
                         </td>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.LessonId })
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.LessonId })
 
-                                @Html.ActionLink("Delete", "Delete", new { id = item.LessonId })
+                            @if (User.IsInRole("Admin"))
+                            {
 
-                            </td>
+                                @:| @Html.ActionLink("Edit", "Edit", new { id = item.LessonId })
+                                @:| @Html.ActionLink("Delete", "Delete", new { id = item.LessonId })
 
-                        }
-                        <td>@Html.ActionLink("Details", "Details", new { id = item.LessonId })  </td>
 
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -80,13 +63,17 @@
         </table>
     </div>
 
-    <div class="btn btn-primary">
+    <br />
+    <div class="btn btn-black">
         @if (User.IsInRole("Admin"))
         {
-            @Html.ActionLink("Create New", "Create")
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
         }
-
     </div>
+    <br />
+    <br />
 </section>
 @section scripts{
 

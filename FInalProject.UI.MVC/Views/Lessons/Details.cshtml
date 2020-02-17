@@ -4,38 +4,40 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Lesson</h4>
+<section>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LessonTitle)
-        </dt>
+    <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
+    <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.LessonTitle)
-        </dd>
+    <div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Introduction)
-        </dt>
+        <dl class="d-lg-table">
+            <dt>
+                @Html.DisplayNameFor(model => model.LessonTitle)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Introduction)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LessonTitle)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoURL)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Introduction)
+            </dt>
 
-        <dd>
-            @*@Html.DisplayFor(model => model.VideoURL)*@
-            <div id="player">
-                <script src="http://www.youtube.com/player_api"></script>
+            <dd>
+                @Html.DisplayFor(model => model.Introduction)
+            </dd>
 
-                <script>
+            <dt>
+                @Html.DisplayNameFor(model => model.VideoURL)
+            </dt>
+
+            <dd>
+                @*@Html.DisplayFor(model => model.VideoURL)*@
+                <div id="player">
+                    <script src="http://www.youtube.com/player_api"></script>
+
+                    <script>
                     // create youtube player
                         var player;
                         var h = '@ViewBag.height';
@@ -76,47 +78,47 @@
                         alert('done');
                         }
                         }
-                </script>
-            </div>
-        </dd>
+                    </script>
+                </div>
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PdfFileName)
-            
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PdfFileName)
 
-        <dd>
-            @*@Html.DisplayFor(model => model.PdfFileName)*@
-            @*<a href="@Url.Content("~/Content/images" + Model.PdfFileName)" target="_blank">Click to see PDF</a>*@
-            <iframe id="iframe" src="@Url.Content("~/Content/PDF" + Model.PdfFileName)" alt="@Model.PdfFileName"></iframe>
-        </dd>
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
+            <dd>
+                @*@Html.DisplayFor(model => model.PdfFileName)*@
+                @*<a href="@Url.Content("~/Content/images" + Model.PdfFileName)" target="_blank">Click to see PDF</a>*@
+                <iframe id="iframe" src="@Url.Content("~/Content/PDF" + Model.PdfFileName)" alt="@Model.PdfFileName"></iframe>
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Course.CourseName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IsActive)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course.CourseName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.CourseName)
+            </dt>
 
-    </dl>
-</div>
+            <dd>
+                @Html.DisplayFor(model => model.Course.CourseName)
+            </dd>
 
-<p>
-    @ViewBag.ErrorMessage
-    @if (User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.LessonId })
-    }
+        </dl>
+    </div>
 
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <br />
+    <p class="btn btn-black">
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.LessonId }) @:|
+        }
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</section>
 

@@ -1,5 +1,5 @@
 ﻿#navbar {
-    color: #c7a87e;
+    color: #c7a87e !important;
     background-color:black;
 }
 #artroom {
@@ -43,7 +43,7 @@ slider-item js-fullheight {
 }
 section {
     background-image: url("../images/color1_edited.jpg");
-    background-repeat: no-repeat;
+    background-repeat: inherit;
     background-size: cover;
     background-position: center;
     background-color:black;
@@ -56,6 +56,11 @@ dl.d-lg-table {
     color: white;
     background-color: rgba(0,0,0,0.7);
 }
+.ftco-navbar-light.scrolled
+{
+    background-color:none !important;
+}
+
 /*#ftco-loader.fullscreen{
     width:90%;
 }*/

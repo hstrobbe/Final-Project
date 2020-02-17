@@ -4,42 +4,52 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details.</h2>
+<section>
+    <br />
+    <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
+    <br />
+    <br />
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-    </dl>
-</div>
-<h4>List of roles for this user</h4>
-@if (ViewBag.RoleNames.Count == 0)
-{
-    <hr />
-    <p>No roles found for this user.</p>
-}
+    <div>
 
-<table class="table">
-
-    @foreach (var item in ViewBag.RoleNames)
+        <dl class="d-lg-table">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+        </dl>
+    </div>
+    <br />
+    <h4>List of roles for this user</h4>
+    @if (ViewBag.RoleNames.Count == 0)
     {
-        <tr>
-            <td>
-                @item
-            </td>
-        </tr>
+        <br />
+        <p>No roles found for this user.</p>
     }
-</table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
 
+    <table class="table" style="color:white;">
+
+        @foreach (var item in ViewBag.RoleNames)
+        {
+            <tr>
+                <td>
+                    @item
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <p class="btn btn-black">
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) @:|
+        }
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    <br />
+    <br />
+</section>
 
 
