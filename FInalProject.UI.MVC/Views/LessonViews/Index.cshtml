@@ -6,71 +6,172 @@
 
 <section>
     <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
+    <br />
+    <br />
 
-
-    <div class="container-fluid" style="padding-left:5em">
-        <table class="table display">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DateViewed)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-                    </th>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <th></th>
-                    }
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach (var item in Model)
-                {
+    <div class="container">
+        <div class="container-fluid" style="padding-left:5em">
+            <table class="table display">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateViewed)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", new { id = item.LessonViewId })
+                        <th>
+                            Date viewed
+                        </th>
+                        <th>
+                            Lesson
+                        </th>
+                        <th>
+                            First Name
+                        </th>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <th></th>
+                        }
+                        <th></th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateViewed)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
+                            </td>
                             @if (User.IsInRole("Admin"))
                             {
-
-                               @:| @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewId })
-
-                               @:| @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewId })
-
-
+                                <td></td>
                             }
-                        </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.LessonViewId })
 
-                    </tr>
-                }
-            </tbody>
+                                @if (User.IsInRole("Admin"))
+                                {
 
-        </table>
+                                    @:| @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewId })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    @:| @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewId })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                }
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
     </div>
     <br />
-    <div class="btn btn-black">
-        @if (User.IsInRole("Admin"))
-        {
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
-        }
-    </div>
+    <br />
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="btn btn-black">
+            @Html.ActionLink("Create New", "Create")
+        </div>
+    }
+
     <br />
     <br />
 </section>

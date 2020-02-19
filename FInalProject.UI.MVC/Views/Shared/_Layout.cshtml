@@ -27,88 +27,81 @@
     <link rel="stylesheet" href="~/Content/css/style.css">
     <link href="~/Content/css/Custom.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="py-1 bg-black top">
+<body style="padding-top:.025em;">
 
-        <div class="col-md pr-4 d-flex topper align-items-center" style="padding-top:2em;">
-            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span ></span></div>
-            @Html.Partial("_LoginPartial")
-        </div>
-
-    </div>
+    
 
     <!--nav bar-->
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="navbar" style="background-color:none !important">
         <div class="container">
-
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
             <div class="collapse navbar-collapse navbar-dark" id="ftco-nav">
+
                 <ul class="navbar-nav ml-auto">
+
                     <li><a href="@Url.Action("Index", "Home")" class="nav-link">Home</a></li>
                     <li><a href="@Url.Action("Contact", "Home")" class="nav-link">Contact</a></li>
-                    <li>
 
 
 
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="dropdown">
+                            <a class="nav-link" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Functions</a>
+                            <div class="dropdown-menu">
+
+                                <a class="dropdown-item" href="@Url.Action("Index", "UserDetails")">Users</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "CourseCompletions")">Completed Courses</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Lessons")">Lessons</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "LessonViews")">Lessons Views</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin")">Admin Roles</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin")">User admin</a>
+                            </div>
+                        </div>
+                    }
+
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <div class="dropdown">
+                            <a class="nav-link" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manager Functions</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="@Url.Action("Index", "Lessons")">Lessons</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "LessonViews")">Lessons Views</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "UserDetails")">Users</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "CourseCompletions")">Completed Courses</a>
+
+
+                            </div>
+                        </div>
+
+                    }
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <div class="dropdown">
+                            <a class="nav-link" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employee Functions</a>
+                            <div class="dropdown-menu">
+
+                                <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Lessons")">Lessons</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "LessonViews")">Lessons Views</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "CourseCompletions")">Completed Courses</a>
+
+                            </div>
+                        </div>
+
+                    }
+                    @Html.Partial("_LoginPartial")
 
                 </ul>
-
-                @if (User.IsInRole("Admin"))
-                {
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle btn-lg" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Functions</a>
-                        <div class="dropdown-menu">
-
-                            <a class="dropdown-item" href="@Url.Action("Index", "UserDetails")">Users</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "CourseCompletions")">Completed Courses</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Lessons")">Lessons</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "LessonViews")">Lessons Views</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin")">Admin Roles</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin")">User admin</a>
-                        </div>
-                    </div>
-                }
-
-                @if (User.IsInRole("Manager"))
-                {
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle btn-sm" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manager Functions</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="@Url.Action("Index", "Lessons")">Lessons</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "LessonViews")">Lessons Views</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "UserDetails")">Users</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "CourseCompletions")">Completed Courses</a>
-
-
-                        </div>
-                    </div>
-
-                }
-                @if (User.IsInRole("Employee"))
-                {
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle btn-sm" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employee Functions</a>
-                        <div class="dropdown-menu">
-
-                            <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Lessons")">Lessons</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "LessonViews")">Lessons Views</a>>
-
-                        </div>
-                    </div>
-
-                }
-
-
-
             </div>
         </div>
     </nav>
     <!-- END nav -->
-    <div style="min-height: 566px;">@RenderBody()</div>
+    <div  style="min-height: 566px;">@RenderBody()</div>
     <!--Footer-->
     <div>
         <footer class="ftco-footer ftco-bg-dark ftco-section">

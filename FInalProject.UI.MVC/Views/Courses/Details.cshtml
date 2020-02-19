@@ -10,11 +10,11 @@
     <hr />
 
     <div>
-        
+
         <hr />
         <dl class="d-lg-table">
             <dt>
-                @Html.DisplayNameFor(model => model.CourseName)
+                Course Name
             </dt>
 
             <dd>
@@ -22,7 +22,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.CourseDescription)
+                Description
             </dt>
 
             <dd>
@@ -30,7 +30,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.IsActive)
+                Is Active
             </dt>
 
             <dd>
@@ -45,8 +45,13 @@
         {
             @Html.ActionLink("Edit", "Edit", new { id = Model.CourseId }) @:|
         }
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to Courses", "Index")
+        
     </p>
+  
+    <div class="btn btn-black"><a href="@Url.Action("Index", "Lessons")">Go to Lessons</a></div>
+
     <br />
+    <br/>
     <br />
 </section>

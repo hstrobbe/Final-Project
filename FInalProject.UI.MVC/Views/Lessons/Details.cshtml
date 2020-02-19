@@ -13,7 +13,7 @@
 
         <dl class="d-lg-table">
             <dt>
-                @Html.DisplayNameFor(model => model.LessonTitle)
+                Lesson
             </dt>
 
             <dd>
@@ -21,7 +21,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Introduction)
+                Introduction
             </dt>
 
             <dd>
@@ -29,7 +29,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.VideoURL)
+                Video/PDF
             </dt>
 
             <dd>
@@ -80,21 +80,27 @@
                         }
                     </script>
                 </div>
+            
+                <iframe id="iframe" src="@Url.Content("~/Content/PDF/" + @Model.PdfFileName)" alt="@Model.PdfFileName"></iframe>
+            
             </dd>
 
+
+
+
             <dt>
-                @Html.DisplayNameFor(model => model.PdfFileName)
+              
 
             </dt>
 
             <dd>
                 @*@Html.DisplayFor(model => model.PdfFileName)*@
                 @*<a href="@Url.Content("~/Content/images" + Model.PdfFileName)" target="_blank">Click to see PDF</a>*@
-                <iframe id="iframe" src="@Url.Content("~/Content/PDF" + Model.PdfFileName)" alt="@Model.PdfFileName"></iframe>
+
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.IsActive)
+                Is Active
             </dt>
 
             <dd>
@@ -102,7 +108,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Course.CourseName)
+                Course Name
             </dt>
 
             <dd>
@@ -118,7 +124,7 @@
         {
             @Html.ActionLink("Edit", "Edit", new { id = Model.LessonId }) @:|
         }
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to Lessons", "Index")
     </p>
 </section>
 

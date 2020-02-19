@@ -121,6 +121,8 @@ namespace FInalProject.UI.MVC.Controllers
 
             #endregion
 
+
+
             return View(lesson);
         }
 
@@ -140,7 +142,7 @@ namespace FInalProject.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                string pdfName = "No Document Provided.pdf";
+                string pdfName = "NoPDF.pdf";
                 if (coverImage != null)
                 {
                     pdfName = coverImage.FileName;
@@ -148,11 +150,11 @@ namespace FInalProject.UI.MVC.Controllers
                     string[] goodExts = { ".pdf" };
                     if (goodExts.Contains(ext.ToLower()))
                     {
-                        coverImage.SaveAs(Server.MapPath("~/Content/" + pdfName));
+                        coverImage.SaveAs(Server.MapPath("~/Content/PDF/" + pdfName));
                     }
                     else
                     {
-                        pdfName = "No Document Provided.pdf";
+                        pdfName = "NoPDF.pdf";
                     }
                 }
                 lesson.PdfFileName = pdfName;
@@ -191,7 +193,7 @@ namespace FInalProject.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                string pdfName = "No Document Provided.pdf";
+                string pdfName = "NoPDF.pdf";
                 if (coverImage != null)
                 {
                     pdfName = coverImage.FileName;
@@ -199,11 +201,17 @@ namespace FInalProject.UI.MVC.Controllers
                     string[] goodExts = { ".pdf" };
                     if (goodExts.Contains(ext.ToLower()))
                     {
-                        coverImage.SaveAs(Server.MapPath("~/Content/PDF" + pdfName));
-                    }
-                    lesson.PdfFileName = pdfName;
-                }
+                        coverImage.SaveAs(Server.MapPath("~/Content/PDF/" + pdfName));
 
+                    }
+                    else
+                    {
+                        pdfName = "NoPDF.pdf";
+                    }
+
+
+                }
+                lesson.PdfFileName = pdfName;
 
                 db.Entry(lesson).State = EntityState.Modified;
                 db.SaveChanges();

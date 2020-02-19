@@ -9,67 +9,76 @@
     <h2 style="padding-top:3em; color: white">@ViewBag.Title</h2>
 
 
-    <div class="container-fluid">
-        <table class="table display">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FirstName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LastName)
-                    </th>
-
-                    <th></th>
-
-
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach (var item in Model)
-                {
+    <div class="container">
+        <div class="container-fluid">
+            <table class="table display">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FirstName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LastName)
-                        </td>
+                        <th>
+                            First Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
 
-                        <td>
-                            @Html.ActionLink("Details", "Details", new { id = item.UserId })
+                        <th></th>
 
-                            @if (User.IsInRole("Admin"))
-                            {
-
-                                @:| @Html.ActionLink("Edit", "Edit", new { id = item.UserId })
-
-
-
-
-                                @:| @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
-
-
-                            }
-
-                        </td>
 
                     </tr>
-                }
-            </tbody>
+                </thead>
 
-        </table>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.UserId })
+
+                                @if (User.IsInRole("Admin"))
+                                {
+
+                                    @:| @Html.ActionLink("Edit", "Edit", new { id = item.UserId })
+
+
+
+
+
+
+
+
+                                    @:| @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+
+
+
+
+                                }
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
     </div>
     <br/>
-    <div class="btn btn-black">
+    
         @if (User.IsInRole("Admin"))
-        {
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
-        }
-    </div>
+        {<div class="btn btn-black">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+</div>
+    }
+
     <br/>
     <br/>
 </section>

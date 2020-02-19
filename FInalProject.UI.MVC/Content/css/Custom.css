@@ -7,11 +7,27 @@
     background-image: url('../images/artroom.jpg');
     
 }
-
+#player {
+    height: 30em;
+    width: 40em;
+    padding-right:1em;
+    padding-left:1em;
+}
+iframe {
+    height:30em;
+    width:35em;
+    position:center;
+    
+}
 
 
 #home {
     background-color:black;
+}
+#homepage {
+    padding-left:2em;
+    padding-right:2em;
+    padding-bottom:2em;
 }
 #contact {
     background: url('../../Content/images/color1_edited.jpg');
@@ -19,34 +35,37 @@
     background-size: cover;
     background-position: center;
     color: white;
-    padding-top: 5em;
-    
- 
-
+    padding-top: 8em;
 }
 #contactTitle {
     font-weight: bolder;
     font-family: 'Indie Flower';
     color: white;
+    padding-top:3em;
+   
    
 }
     
 #contactbody {
+    
     font-weight: bolder;
     
     font-family: 'Indie Flower';
-    font-size:larger;
+    font-size:27px;
     padding-bottom:5em;
 }
 slider-item js-fullheight {
     background-size: cover;
 }
 section {
-    background-image: url("../images/color1_edited.jpg");
+
+  background-image: url("../images/color1_edited.jpg");
+    
     background-repeat: inherit;
     background-size: cover;
     background-position: center;
     background-color:black;
+    padding-bottom:1em;
 }
 div.container-fluid{
     background-color:white;
@@ -60,6 +79,8 @@ dl.d-lg-table {
 {
     background-color:none !important;
 }
+
+
 
 /*#ftco-loader.fullscreen{
     width:90%;

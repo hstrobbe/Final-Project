@@ -13,7 +13,7 @@
 
         <dl class="d-lg-table">
             <dt>
-                @Html.DisplayNameFor(model => model.DateCompleted)<br />
+                Date Completed<br />
             </dt>
 
             <dd>
@@ -21,7 +21,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Course.CourseName)<br />
+                Course Name<br />
             </dt>
 
             <dd>
@@ -29,7 +29,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.UserDetail.FirstName)<br />
+                First Name<br />
             </dt>
 
             <dd>
@@ -39,13 +39,14 @@
         </dl>
     </div>
     <br />
-    <p class="btn btn-black">
+    <div class="btn btn-black">
         @if (User.IsInRole("Admin"))
         {
             @Html.ActionLink("Edit", "Edit", new { id = Model.CourseCompletionId }) @: |
         }
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+        
+        @Html.ActionLink("Back to Completed Courses", "Index")
+    </div>
     <br/>
     <br/>
 </section>

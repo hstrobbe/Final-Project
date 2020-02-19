@@ -5,9 +5,10 @@
 }
 
 <section>
-    <hr/>
+    <hr />
     <h2 style="padding-top:3em;">@ViewBag.Title</h2>
-    <hr/>
+    <br />
+    <br />
     <div>
 
         <dl class="d-lg-table">
@@ -29,7 +30,8 @@
             </dd>
 
         </dl>
-
+        <br />
+        <br />
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
@@ -42,5 +44,6 @@
         <br />
         <br />
 
+
     </div>
-    </section>
+</section>

@@ -7,7 +7,7 @@
 <section>
     <h2 style="padding-top:3em;">@ViewBag.Title</h2>
 
-    
+
     <div>
         <h4>Course</h4>
         <hr />
@@ -41,12 +41,14 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
+            <input style="color:#e5b929" type="submit" value="Delete" class="btn btn-black" />
+            <div class="btn btn-black">
 
-            <div class="form-actions no-color">
-                <input style="color:#e5b929" type="submit" value="Delete" class="btn btn-black" /> |
                 @Html.ActionLink("Back to List", "Index")
             </div>
-            
+
         }
     </div>
+    <br />
+    <br/>
 </section>

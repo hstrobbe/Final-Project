@@ -250,8 +250,9 @@ input[type="month"] {
   -webkit-appearance: listbox; }
 
 textarea {
-  overflow: auto;
-  resize: vertical; }
+  width:25em;
+  height:5em;
+  resize: none; }
 
 fieldset {
   min-width: 0;
@@ -1592,7 +1593,7 @@ pre {
 
 .form-control {
   display: block;
-  width: 100%;
+  width: auto;
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
   font-size: 1rem;

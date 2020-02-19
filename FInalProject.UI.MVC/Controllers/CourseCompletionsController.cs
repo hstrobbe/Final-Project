@@ -18,8 +18,15 @@ namespace FInalProject.UI.MVC.Controllers
         // GET: CourseCompletions
         public ActionResult Index()
         {
-            var courseCompletions = db.CourseCompletions.Include(c => c.Course).Include(c => c.UserDetail);
-            return View(courseCompletions.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Manager")) { var courseCompletions = db.CourseCompletions.Include(c => c.Course).Include(c => c.UserDetail);return View(courseCompletions.ToList());}
+            else
+            {
+                string currUser = User.Identity.GetUserId();
+                var courseCompletion = db.CourseCompletions.Where(cc => cc.UserId == currUser);
+                return View(courseCompletion.ToList());
+            }
+            
+            
         }
 
         // GET: CourseCompletions/Details/5
